@@ -21,55 +21,31 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?=site_url()?>"><b>Codeigniter</b> 4</a>
+    <a href="<?=site_url()?>"><b>Récupération de votre mot de passe</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Connectez vous pour commencer</p>
-
-      <form action="" method="post" id="loginform">
+      <p class="login-box-msg">Saisissez votre nouveau mot de passe</p>
+      <form action="<?=site_url("admin/login/remember/".$key) ?>" method="post" id="dorememberform">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+            <input type="password" class="form-control" placeholder="Nouveau mot de passe" name="password">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                <span class="fas fa-eye eye-show" style="cursor:pointer" data-state="0"></span>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Mot de passe" name="password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember" name="remember">
-              <label for="remember">
-                Se souvenir de moi
-              </label>
-            </div>
-          </div>
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+            <button type="submit" class="btn btn-primary btn-block">Redéfinir le mot de passe</button>
           </div>
-          <div class="col-12">
-          <div class="alert" role="alert" style="margin-top:15px">
-            
-          </div>
+          <div class="col-12" style="padding-top:15px">
+          <?=session()->getFlashData("message")?>
           </div>
           <!-- /.col -->
         </div>
       </form>
-
-      <p class="mb-1">
-        <a href="forgot-password.html">J'ai oublié mon mot de passe</a>
-      </p>
       
     </div>
     <!-- /.login-card-body -->
@@ -83,6 +59,18 @@
 <script src="<?= base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/js/adminlte.min.js')?>"></script>
-<script type="module" src="<?=site_url(("assets/js/login.js"))?>"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".eye-show").on("click",function(){
+            if($(this).data('state')=="0"){
+                $("input[name='password']").prop("type","text");
+                $(this).data("state","1");
+            }else{
+                $("input[name='password']").prop("type","password");
+                $(this).data("state","0");
+            }
+        });
+    });
+</script>
 </body>
 </html>
