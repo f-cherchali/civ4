@@ -4,6 +4,10 @@ use \App\Models\AdminModel;
 use \Config\MyConfig;
 class Login extends BaseController{
     public function index(){
+        $session = session();
+        if(isset($session->admin_id)){
+            return redirect()->to(site_url("admin/dashboard"));
+         }
         echo view("admin/login");
     }
     public function Connect(){

@@ -27,6 +27,7 @@ $(document).ready(function(){
                     $(".alert").addClass("alert-success");
                     $("button[type='submit']").prop("disabled",true);
                     $(".alert").html("Connexion réussie !<br>Veuillez patienter");
+                    window.location.href=base_url+"admin/dashboard";
                 }else{
                     $(".alert").addClass("alert-danger");
                     $("button[type='submit']").prop("disabled",false);

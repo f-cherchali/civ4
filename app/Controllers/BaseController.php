@@ -27,7 +27,6 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = ['form','url','html'];
-
 	/**
 	 * Constructor.
 	 */
@@ -35,7 +34,6 @@ class BaseController extends Controller
 	{
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
-
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------

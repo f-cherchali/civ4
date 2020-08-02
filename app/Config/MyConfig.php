@@ -17,4 +17,9 @@ class MyConfig extends BaseConfig{
         'mailType' => 'html' // or html	
     ];
     public $charscrypt="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
+    public $app_name = "Codeigniter V4 Admin Panel";
+    public $app_version = "1.0";
+    public $app_developer_name="DIGITALL IN";
+    public $app_customer_name="DIGITALL IN";
+    public $app_developper_link="https://digitall-agency.com";
 }
