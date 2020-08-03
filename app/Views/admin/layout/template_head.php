@@ -139,7 +139,7 @@
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image"></div>
+        <div class="image">
           <img src="<?=site_url("assets/img/".(($admin_photo=="")?"defaultuser.png":$admin_photo))?>" class="img-circle elevation-2" alt="<?=$admin_first_name." ".$admin_last_name?>">
         </div>
         <div class="info">

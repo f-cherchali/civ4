@@ -23,6 +23,8 @@ use \Config\MyConfig;
             ];
             echo view("admin//layout/template_head.php",$data_head);
 
+            
+
             $data_footer['myConfig']=$myConfig;
             echo view("admin//layout/template_footer.php",$data_footer);
         }
