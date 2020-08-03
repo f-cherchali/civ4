@@ -30,7 +30,7 @@
             ];
             echo view("admin//layout/template_head.php",$data_head);
 
-            
+            $data['adminData'] = $adminModel->getAdminDataById($session->admin_id);
 
             $data_footer['myConfig']=$myConfig;
             echo view("admin//layout/template_footer.php",$data_footer);

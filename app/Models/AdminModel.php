@@ -91,5 +91,11 @@
             $builder->where("keypass",$key);
             $builder->update();
         }
+        function getAdminDataById($adminid){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $query = $builder->where("admin_id",$adminid)->limit(1)->get();
+            return $query->getResult();
+        }
     }
 ?>
