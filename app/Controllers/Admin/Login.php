@@ -4,7 +4,7 @@ use \App\Models\AdminModel;
 use \Config\MyConfig;
 class Login extends BaseController{
     public function index(){
-        $session = session();
+        $$session = $this->session;
         if(isset($session->admin_id)){
             return redirect()->to(site_url("admin/dashboard"));
          }
@@ -12,7 +12,7 @@ class Login extends BaseController{
     }
     public function Connect(){
         $adminModel = new AdminModel;
-        $session = \Config\Services::session();
+        $session = $this->session;
         if($this->request->isAjax() || $this->request->getMethod == "POST"){
             $email = $this->request->getPost("email");
             $password = $this->request->getPost("password");
@@ -91,7 +91,7 @@ class Login extends BaseController{
                         $adminModel->setRecoverNewPassword($hash_password,$key);
                         return redirect()->to(site_url("admin/login/successrecover"));
                     }else{
-                        $session = session();
+                        $$session = $this->session;
                         $session->setFlashdata('message', '<div class="alert alert-danger">'.$validation->getErrors()['password'].'</div>');
                         $data['key']=$key;
                         echo view("admin/doremember",$data);

@@ -3,7 +3,7 @@ use \App\Controllers\BaseController;
 use \Config\MyConfig;
     class Dashboard extends BaseController{
         public function index(){
-            $session = session();
+            $session = $this->session;
             if(!isset($session->admin_id)){
                 return redirect()->to(site_url("admin/login"));
             }
