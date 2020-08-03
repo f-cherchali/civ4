@@ -1,10 +1,9 @@
 <?php namespace App\Controllers\Admin;
 use \App\Controllers\BaseController;
 use \App\Models\AdminModel;
-use \Config\MyConfig;
 class Login extends BaseController{
     public function index(){
-        $$session = $this->session;
+        $session = $this->session;
         if(isset($session->admin_id)){
             return redirect()->to(site_url("admin/dashboard"));
          }
@@ -91,7 +90,7 @@ class Login extends BaseController{
                         $adminModel->setRecoverNewPassword($hash_password,$key);
                         return redirect()->to(site_url("admin/login/successrecover"));
                     }else{
-                        $$session = $this->session;
+                        $session = $this->session;
                         $session->setFlashdata('message', '<div class="alert alert-danger">'.$validation->getErrors()['password'].'</div>');
                         $data['key']=$key;
                         echo view("admin/doremember",$data);
@@ -114,7 +113,7 @@ class Login extends BaseController{
             $validation->setRule("email","Email","required|valid_email");
             if($validation->withRequest($this->request)->run() !== FALSE){
                 if($adminModel->checkAccountExistsToResetPassword($email) && $adminModel->checkAccountActive($email)){
-                    $myconfig = new MyConfig();
+                    $myconfig = $this->myConfig;
                     $email = \Config\Services::email();
                     helper("myfunctions");
                     $key = generate_token(32);
