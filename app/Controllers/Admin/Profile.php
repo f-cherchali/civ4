@@ -28,10 +28,23 @@
                     "link"=>false
                 ]
             ];
+            $data_head['css_files']=[
+                site_url('assets/css/cropper.min.css')
+            ];
             echo view("admin//layout/template_head.php",$data_head);
 
             $data['adminData'] = $adminModel->getAdminDataById($session->admin_id);
+            echo view("admin/profile",$data);
 
+            $data_footer['js_files']=[
+                site_url("assets/js/cropper.min.js"),
+                site_url("assets/js/jquery-cropper.min.js")
+                
+            ];
+            $data_footer['sessview']=$session;
+            $data_footer['scripts_footer']=[
+                view("admin/script_profile",['sessview'=>$session])
+            ];
             $data_footer['myConfig']=$myConfig;
             echo view("admin//layout/template_footer.php",$data_footer);
         }

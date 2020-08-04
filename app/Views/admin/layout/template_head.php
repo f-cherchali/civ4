@@ -16,6 +16,15 @@
   <link rel="stylesheet" href="<?=site_url("assets/css/adminlte.min.css")?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <?php 
+    if(isset($css_files)){
+      foreach($css_files as $key => $css){
+        ?>
+          <link href="<?=$css?>" rel="stylesheet">
+        <?php
+      }
+    }
+  ?>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -140,7 +149,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=site_url("assets/img/".(($admin_photo=="")?"defaultuser.png":$admin_photo))?>" class="img-circle elevation-2" alt="<?=$admin_first_name." ".$admin_last_name?>">
+          <img src="<?=site_url((($admin_photo=="")?"assets/img/defaultuser.png":"uploads/images/".$admin_photo))?>" class="img-circle elevation-2" alt="<?=$admin_first_name." ".$admin_last_name?>" id="profile-avatar">
         </div>
         <div class="info">
           <a href="<?=site_url("admin/profile")?>" class="d-block"><?=$admin_first_name." ".$admin_last_name?></a>
@@ -223,7 +232,7 @@
 
     <!-- Main content -->
     <section class="content">
-
+      <div class="container-fluid">
       
 
     

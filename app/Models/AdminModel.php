@@ -95,7 +95,26 @@
             $db = \Config\Database::connect();
             $builder = $db->table("admin");
             $query = $builder->where("admin_id",$adminid)->limit(1)->get();
-            return $query->getResult();
+            return $query->getResult()[0];
+        }
+        function getAdminPicture($adminid){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $query = $builder->where("admin_id",$adminid)->limit(1)->get();
+            if($builder->countAllResults()>0){
+                return $query->getResult()[0]->photo;
+            }else{
+                return false;
+            }
+        }
+        function setAdminPicture($adminid,$newName){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $builder->set([
+                'photo'=>$newName
+            ],FALSE);
+           
+            $query = $builder->where("admin_id",$adminid)->update();
         }
     }
 ?>
