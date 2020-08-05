@@ -26,8 +26,7 @@
                         }else{
                             $adminModel->setAdminPicture($adminid,$newName);
                             if($oldPicture!=""){
-                                helper("filesystem");
-                                delete_files("./uploads/images/".$oldPicture);
+                                unlink("uploads/images/".$oldPicture);
                             }
                             $session->set("admin_photo",$newName);
                             echo json_encode([

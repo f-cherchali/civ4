@@ -12,6 +12,7 @@
             }
             $myConfig =$this->myConfig;
             $data_head=[];
+            $data_head["sessview"]=$session;
             $data_head['admin_first_name']=$session->admin_first_name;
             $data_head['admin_photo']=$session->admin_photo;
             $data_head['admin_last_name']=$session->admin_last_name;
@@ -41,7 +42,6 @@
                 site_url("assets/js/jquery-cropper.min.js")
                 
             ];
-            $data_footer['sessview']=$session;
             $data_footer['scripts_footer']=[
                 view("admin/script_profile",['sessview'=>$session])
             ];

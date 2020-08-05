@@ -15,6 +15,7 @@
                 viewMode: 2
             });
             var cropper = $image.data('cropper');
+            $("#validate").removeAttr("hidden");
             $("#validate").on("click",function(){
                 cropper.crop();
                 cropper.getCroppedCanvas().toBlob((blob) => {
@@ -30,17 +31,19 @@
                         processData: false,
                         contentType: false,
                         success(response) {
+                            $("#validate").attr("hidden","hidden");
                             var result = JSON.parse(response);
                             if(result.status){
-                                $(".cropper-container").remove();
                                 $("img#image").attr("src",base_url+"/uploads/images/"+result.filename);
-                                $("img#image").removeClass("cropper-hidden");
                                 $("#profile-avatar").attr("src",base_url+"/uploads/images/"+result.filename);
+                                cropper.destroy();
+                                window.location.href="<?=site_url("admin/profile")?>";
                             }else{
                                 alert(result.message);
                             }
                         },
                         error() {
+                            $("#validate").attr("hidden","hidden");
                             console.log('Une érreur est survenue, veuillez recharger la page');
                         },
                     });
