@@ -1,3 +1,4 @@
+<?php $sessview = session();?>
 <div class="row">
     <div class="col-md-12">
         <div class="card card-primary">
@@ -14,11 +15,12 @@
                   </div>
                   <div class="form-group">
                     <label for="last_name">Nom</label>
-                    <input type="last_name" class="form-control" id="last_name" value="<?=$adminData->last_name?>">
+                    <input type="last_name" class="form-control <?=($sessview->getFlashdata('last_name')!=null)?"is-invalid":""?>" name="last_name" id="last_name" value="<?=$adminData->last_name?>">
+                    <?=($sessview->getFlashdata('last_name')!=null)?"<div class='invalid-feedback'>".$sessview->getFlashdata('last_name')."</div>":""?>
                   </div>
                   <div class="form-group">
                     <label for="first_name">Prénom</label>
-                    <input type="first_name" class="form-control" id="first_name" value="<?=$adminData->first_name?>">
+                    <input type="first_name" class="form-control" name="first_name" id="first_name" value="<?=$adminData->first_name?>">
                   </div>
                 </div>
                 <!-- /.card-body -->

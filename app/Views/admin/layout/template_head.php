@@ -149,10 +149,10 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=site_url((($admin_photo=="")?"assets/img/defaultuser.png":"uploads/images/".$admin_photo))?>" class="img-circle elevation-2" alt="<?=$admin_first_name." ".$admin_last_name?>" id="profile-avatar">
+          <img src="<?=site_url(((session('admin_photo')=="")?"assets/img/defaultuser.png":"uploads/images/".session('admin_photo')))?>" class="img-circle elevation-2" alt="<?=session('admin_first_name')." ".session('admin_last_name')?>" id="profile-avatar">
         </div>
         <div class="info">
-          <a href="<?=site_url("admin/profile")?>" class="d-block"><?=$admin_first_name." ".$admin_last_name?></a>
+          <a href="<?=site_url("admin/profile")?>" class="d-block"><?=session("admin_first_name")." ".session('admin_last_name')?></a>
         </div>
       </div>
 
@@ -233,6 +233,15 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <?php 
+          if(session()->getFlashdata("success_message")!=null){
+            ?>
+              <div class="alert alert-success" role="alert">
+                <?=session()->getFlashdata("success_message")?>
+              </div>
+            <?php
+          }
+        ?>
       
 
     

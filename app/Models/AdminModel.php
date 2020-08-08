@@ -116,5 +116,14 @@
            
             $query = $builder->where("admin_id",$adminid)->update();
         }
+        function updateProfileData($first_name,$last_name,$admin_id){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $builder->set([
+                "first_name"=>$first_name,
+                "last_name"=>$last_name
+            ]);
+            $builder->where("admin_id",$admin_id)->update();
+        }
     }
 ?>
