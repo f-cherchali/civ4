@@ -51,7 +51,7 @@ class GcController extends Controller
         $db = (new \Config\Database())->default;
             return [
                 'adapter' => [
-                    'driver' => 'Pdo_Mysql',
+                    'driver' => 'mysqli',
                     'host'     => $db['hostname'],
                     'database' => $db['database'],
                     'username' => $db['username'],
@@ -60,7 +60,7 @@ class GcController extends Controller
                 ]
             ];
         }
-    private function _getGroceryCrudEnterprise($bootstrap = true, $jquery = true) {
+    protected function _getGroceryCrudEnterprise($bootstrap = true, $jquery = true) {
         $db = $this->_getDbData();
         $config = (new \Config\GroceryCrudEnterprise())->getDefaultConfig();
         $groceryCrud = new GroceryCrud($config, $db);

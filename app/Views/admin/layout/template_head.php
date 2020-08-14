@@ -9,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?=site_url("assets/plugins/fontawesome-free/css/all.min.css")?>">
+  <link rel="stylesheet" href="<?=site_url("public/assets/plugins/fontawesome-free/css/all.min.css")?>">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?=site_url("assets/css/adminlte.min.css")?>">
+  <link rel="stylesheet" href="<?=site_url("public/assets/css/adminlte.min.css")?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <?php 
@@ -30,6 +30,15 @@
       foreach($css_files as $key => $css){
         ?>
           <link href="<?=site_url($css)?>" rel="stylesheet">
+        <?php
+      }
+    }
+  ?>
+  <?php 
+    if(isset($gc_css_files)){
+      foreach($gc_css_files as $file){
+        ?>
+          <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
         <?php
       }
     }
@@ -53,7 +62,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<?=site_url("assets/img/user1-128x128.jpg")?>" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="<?=site_url("public/assets/img/user1-128x128.jpg")?>" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -69,7 +78,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<?=site_url("assets/img/user8-128x128.jpg")?>" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=site_url("public/assets/img/user8-128x128.jpg")?>" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -85,7 +94,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<?=site_url("assets/img/user3-128x128.jpg")?>" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=site_url("public/assets/img/user3-128x128.jpg")?>" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -146,7 +155,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="<?=site_url("assets/img/adminpanellogo.jpg")?>"
+      <img src="<?=site_url("public/assets/img/adminpanellogo.jpg")?>"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
@@ -158,7 +167,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=site_url(((session('admin_photo')=="")?"assets/img/defaultuser.png":"uploads/images/".session('admin_photo')))?>" class="img-circle elevation-2" alt="<?=session('admin_first_name')." ".session('admin_last_name')?>" id="profile-avatar">
+          <img src="<?=site_url(((session('admin_photo')=="")?"assets/img/defaultuser.png":"public/uploads/images/".session('admin_photo')))?>" class="img-circle elevation-2" alt="<?=session('admin_first_name')." ".session('admin_last_name')?>" id="profile-avatar">
         </div>
         <div class="info">
           <a href="<?=site_url("admin/profile")?>" class="d-block"><?=session("admin_first_name")." ".session('admin_last_name')?></a>

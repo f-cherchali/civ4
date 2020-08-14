@@ -34,8 +34,8 @@
                             $("#validate").attr("hidden","hidden");
                             var result = JSON.parse(response);
                             if(result.status){
-                                $("img#image").attr("src",base_url+"/uploads/images/"+result.filename);
-                                $("#profile-avatar").attr("src",base_url+"/uploads/images/"+result.filename);
+                                $("img#image").attr("src",base_url+"public/uploads/images/"+result.filename);
+                                $("#profile-avatar").attr("src",base_url+"public/uploads/images/"+result.filename);
                                 cropper.destroy();
                                 window.location.href="<?=site_url("admin/profile")?>";
                             }else{
@@ -53,27 +53,4 @@
             
         });
     });
-    // var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];    
-    // function Validate(fileinput) {
-    //         var oInput = document.getElementById(fileinput);
-    //         if (oInput.type == "file") {
-    //             var sFileName = oInput.value;
-    //             if (sFileName.length > 0) {
-    //                 var blnValid = false;
-    //                 for (var j = 0; j < _validFileExtensions.length; j++) {
-    //                     var sCurExtension = _validFileExtensions[j];
-    //                     if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
-    //                         blnValid = true;
-    //                         break;
-    //                     }
-    //                 }
-                    
-    //                 if (!blnValid) {
-    //                     alert("Desolé, " + sFileName + " est non valide, les formats autorisés sont: " + _validFileExtensions.join(", "));
-    //                     return false;
-    //                 }
-    //             }
-    //         }
-    // return true;
-// }
 </script>

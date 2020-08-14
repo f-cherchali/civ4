@@ -82,7 +82,6 @@
             $footer->setJsFile("assets/js/jquery-cropper.min.js");
             $footer->setScript(view("admin/script_profile",['sessview'=>$session]));
             $footer->render();
-            
             // END FOOTER TEMPLATE
         }
     }

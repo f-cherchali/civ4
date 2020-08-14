@@ -9,7 +9,7 @@
                 $file= $this->request->getFile('croppedImage');
                 if($file->isValid() && !$file->hasMoved()){
                     $newName = $file->getRandomName();
-                    $writedFile= $file->move("./uploads/images",$newName);
+                    $writedFile= $file->move("./public/uploads/images",$newName);
                     if(!$writedFile){
                         echo json_encode([
                             "status"=>false,
@@ -26,7 +26,7 @@
                         }else{
                             $adminModel->setAdminPicture($adminid,$newName);
                             if($oldPicture!=""){
-                                unlink("uploads/images/".$oldPicture);
+                                unlink("public/uploads/images/".$oldPicture);
                             }
                             $session->set("admin_photo",$newName);
                             echo json_encode([

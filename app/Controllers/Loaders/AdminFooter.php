@@ -6,7 +6,7 @@
         private $jsFiles=[];
         private $jsLinks=[];
         private $scripts=[];
-        private $gcJsFiles;
+        private $gcJsFiles=[];
         public function setJsFile($file){
             $this->jsFiles[] = $file;
         }
@@ -25,7 +25,7 @@
                 "js_files"=>$this->jsFiles,
                 "js_links"=>$this->jsLinks,
                 "scripts_footer"=>$this->scripts,
-                "groceryJsFiles"=>$this->gcJsFiles
+                "gc_js_files"=>$this->gcJsFiles
             ];
             echo view("admin/layout/template_footer.php",$data);
         }

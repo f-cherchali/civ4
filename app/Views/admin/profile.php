@@ -48,7 +48,7 @@
                     </div>
                   </div>
                   <div class="col-md-6 text-center">
-                    <img width="200" height="200" id="image" src="<?=($sessview->admin_photo=="")?site_url("assets/img/defaultuser.png"):site_url("uploads/images/".$sessview->admin_photo)?>">
+                    <img width="200" height="200" id="image" src="<?=($sessview->admin_photo=="")?site_url("public/assets/img/defaultuser.png"):site_url("public/uploads/images/".$sessview->admin_photo)?>">
                     <button id="validate" hidden>Appliquer</button>
                   </div>
                 </div>

@@ -21,13 +21,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?=site_url("assets/plugins/jquery/jquery.min.js")?>"></script>
+<script src="<?=site_url("public/assets/plugins/jquery/jquery.min.js")?>"></script>
 <!-- Bootstrap 4 -->
-<script src="<?=site_url("assets/plugins/bootstrap/js/bootstrap.bundle.min.js")?>"></script>
+<script src="<?=site_url("public/assets/plugins/bootstrap/js/bootstrap.bundle.min.js")?>"></script>
 <!-- AdminLTE App -->
-<script src="<?=site_url("assets/js/adminlte.min.js")?>"></script>
+<script src="<?=site_url("public/assets/js/adminlte.min.js")?>"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?=site_url("assets/js/demo.js")?>"></script>
+<script src="<?=site_url("public/assets/js/demo.js")?>"></script>
   <?php
     if(isset($js_links)){
       foreach($js_links as $key => $js){
@@ -47,11 +47,19 @@
     }
   ?>
   <?php 
+    foreach($gc_js_files as $file){
+      ?>
+        <script src="<?php echo $file; ?>"></script>
+      <?php
+    }
+  ?>
+  <?php 
     if(isset($scripts_footer)){
       foreach($scripts_footer as $key => $js){
         echo $js;
       }
     }
   ?>
+  
 </body>
 </html>

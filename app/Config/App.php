@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost:8888/civ4/public';
+	public $baseURL = 'http://localhost:8888/civ4';
 	/*
 	|--------------------------------------------------------------------------
 	| Index File
@@ -49,7 +49,7 @@ class App extends BaseConfig
 	|
 	| WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 	*/
-	public $uriProtocol = 'REQUEST_URI';
+	public $uriProtocol = 'PATH_INFO';
 
 	/*
 	|--------------------------------------------------------------------------

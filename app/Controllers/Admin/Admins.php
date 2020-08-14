@@ -18,19 +18,31 @@ class Admins extends GcController{
         $header->setPrincipalTitle("Comptes administrateurs");
         $header->setBreadCrumb("Tableau de bord","admin/dashboard");
         $header->setBreadCrumb("Gestion des administrateurs",false);
-        $header->render();
-        // END HEAD TEMPLATE
+        
 
 
         // START BODY
 
-        // $crud= $this->_getGroceryCrudEnterprise();
+        //Starting Grocery Crud
+        $crud = $this->_getGroceryCrudEnterprise();
+        $crud->setTable("admin");
+        $crud->unsetJquery();
+        $crud->unsetBootstrap();
+        $gcRender = $crud->render();
+        // END RENDER GROCERY CRUD
 
+        $header->setGcCssFiles((array)$gcRender->css_files);
+        $header->render();
+
+        
+        echo view("admin/grocery",(array)$gcRender);
+        
         // END BODY
 
         // START FOOTER TEMPLATE
 
         $footer = new AdminFooter();
+        $footer->setGcJsFiles((array)$gcRender->js_files);
         $footer->render();
 
         // END FOOTER TEMPLATE
