@@ -91,5 +91,39 @@
             $builder->where("keypass",$key);
             $builder->update();
         }
+        function getAdminDataById($adminid){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $query = $builder->where("admin_id",$adminid)->limit(1)->get();
+            return $query->getResult()[0];
+        }
+        function getAdminPicture($adminid){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $query = $builder->where("admin_id",$adminid)->limit(1)->get();
+            if($builder->countAllResults()>0){
+                return $query->getResult()[0]->photo;
+            }else{
+                return false;
+            }
+        }
+        function setAdminPicture($adminid,$newName){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $builder->set([
+                'photo'=>$newName
+            ],FALSE);
+           
+            $query = $builder->where("admin_id",$adminid)->update();
+        }
+        function updateProfileData($first_name,$last_name,$admin_id){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $builder->set([
+                "first_name"=>$first_name,
+                "last_name"=>$last_name
+            ]);
+            $builder->where("admin_id",$admin_id)->update();
+        }
     }
 ?>
