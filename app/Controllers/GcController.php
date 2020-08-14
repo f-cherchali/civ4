@@ -59,8 +59,8 @@ class GcController extends Controller
                     'charset' => 'utf8'
                 ]
             ];
-        }
-    private function _getGroceryCrudEnterprise($bootstrap = true, $jquery = true) {
+    }
+    public function _getGroceryCrudEnterprise($bootstrap = true, $jquery = true) {
         $db = $this->_getDbData();
         $config = (new \Config\GroceryCrudEnterprise())->getDefaultConfig();
         $groceryCrud = new GroceryCrud($config, $db);

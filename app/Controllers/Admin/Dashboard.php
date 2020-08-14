@@ -1,31 +1,26 @@
 <?php namespace App\Controllers\Admin;
 use \App\Controllers\BaseController;
+use \App\Controllers\Loaders\AdminHeader;
+use \App\Controllers\Loaders\AdminFooter;   
     class Dashboard extends BaseController{
         public function index(){
             $session = $this->session;
             if(!isset($session->admin_id)){
                 return redirect()->to(site_url("admin/login"));
             }
-            $myConfig =$this->myConfig;
-            $data_head=[];
-            $data_head['admin_first_name']=$session->admin_first_name;
-            $data_head['admin_photo']=$session->admin_photo;
-            $data_head['admin_last_name']=$session->admin_last_name;
-            $data_head['myConfig']=$myConfig;
-            $data_head['title']="Tableau de bord";
-            $data_head['principal_title']="Tableau de bord";
-            $data_head['breadcrumb']=[
-                [
-                    "title"=>"Dashboard",
-                    "link"=>false
-                ]
-            ];
-            echo view("admin//layout/template_head.php",$data_head);
+            // START HEAD TEMPLATE
+            $header = new AdminHeader();
+            $header->setTitle("Tableau de bord");
+            $header->setPrincipalTitle("Tableau de bord");
+            $header->setBreadCrumb("Dashboard","false");
+            $header->render();
+            // END HEAD TEMPLATE
 
 
-
-            $data_footer['myConfig']=$myConfig;
-            echo view("admin//layout/template_footer.php",$data_footer);
+            // START FOOTER TEMPLATE
+            $footer = new AdminFooter();
+            $footer->render();
+            // END FOOTER TEMPLATE
         }
     }
 ?>

@@ -20,6 +20,15 @@
     if(isset($css_files)){
       foreach($css_files as $key => $css){
         ?>
+          <link href="<?=site_url($css)?>" rel="stylesheet">
+        <?php
+      }
+    }
+  ?>
+  <?php 
+    if(isset($css_links)){
+      foreach($css_links as $key => $css){
+        ?>
           <link href="<?=$css?>" rel="stylesheet">
         <?php
       }
@@ -220,7 +229,19 @@
               <?php 
                 foreach($breadcrumb as $key=>$b){
                   ?>
-                    <li class="breadcrumb-item <?php end($breadcrumb); ($key==key($breadcrumb))? "active":""?>"><a href="<?=($b['link'] != false)?site_url($b['link']):"#"?>"><?=$b['title']?></a></li>
+                    <li class="breadcrumb-item <?php end($breadcrumb); ($key==key($breadcrumb))? "active":""?>">
+                      <?php 
+                        if($b['link'] != false){
+                          ?>
+                            <a href="<?=site_url($b['link'])?>"><?=$b['title']?></a>
+                          <?php
+                        }else{
+                          ?>
+                            <?=$b['title']?>
+                          <?php
+                        }
+                      ?>
+                    </li>
                   <?php 
                 }
               ?>

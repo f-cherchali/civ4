@@ -29,10 +29,19 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?=site_url("assets/js/demo.js")?>"></script>
   <?php 
+    if(isset($js_links)){
+      foreach($js_links as $key => $js){
+        ?>
+          <script src="<?=$js?>" type="text/javascript"></script>
+        <?php
+      }
+    }
+  ?>
+  <?php
     if(isset($js_files)){
       foreach($js_files as $key => $js){
         ?>
-          <script src="<?=$js?>" type="text/javascript"></script>
+          <script src="<?=site_url($js)?>" type="text/javascript"></script>
         <?php
       }
     }

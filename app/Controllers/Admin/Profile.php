@@ -2,7 +2,8 @@
 
     use \App\Controllers\BaseController;
     use \App\Models\AdminModel;
-    
+    use \App\Controllers\Loaders\AdminHeader;
+    use \App\Controllers\Loaders\AdminFooter;   
     class Profile extends BaseController{
         public function index(){
             $session= $this->session;
@@ -55,47 +56,31 @@
                 }
             }
 
-
             // START HEAD TEMPLATE
-            $myConfig =$this->myConfig;
-            $data_head=[];
-            $data_head['myConfig']=$myConfig;
-            $data_head['title']="Mon profile";
-            $data_head['principal_title']="Paramètres du compte";
-            $data_head['breadcrumb']=[
-                [
-                    "title"=>"Dashboard",
-                    "link"=>site_url("admin/dashboard")
-                ],
-                [
-                    "title"=>"Profile",
-                    "link"=>false
-                ]
-            ];
-            $data_head['css_files']=[
-                site_url('assets/css/cropper.min.css')
-            ];
-            echo view("admin//layout/template_head.php",$data_head);
+            $header = new AdminHeader();
+            $header->setTitle("Mon profile");
+            $header->setPrincipalTitle("Paramètres du compte");
+            $header->setBreadCrumb("Dashboard","admin/dashboard");
+            $header->setBreadCrumb("Profile",false);
+            $header->setCssFile('assets/css/cropper.min.css');
+            $header->render();
             // END HEAD TEMPLATE
 
             // START BODY
-            
 
             $data['adminData'] = $adminModel->getAdminDataById($session->admin_id);
             echo view("admin/profile",$data);
             // END BODY
 
+            
             // START FOOTER TEMPLATE
-            $data_footer['js_files']=[
-                site_url("assets/js/cropper.min.js"),
-                site_url("assets/js/jquery-cropper.min.js")
-                
-            ];
-            $data_footer['scripts_footer']=[
-                view("admin/script_profile",['sessview'=>$session])
-            ];
-            $data_footer['myConfig']=$myConfig;
-            echo view("admin//layout/template_footer.php",$data_footer);
+
+            $footer = new AdminFooter();
+            $footer->setJsFile("assets/js/cropper.min.js");
+            $footer->setJsFile("assets/js/jquery-cropper.min.js");
+            $footer->setScript(view("admin/script_profile",['sessview'=>$session]));
+            $footer->render();
+            
             // END FOOTER TEMPLATE
         }
     }
