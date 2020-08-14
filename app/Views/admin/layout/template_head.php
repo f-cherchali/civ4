@@ -38,7 +38,7 @@
     if(isset($gc_css_files)){
       foreach($gc_css_files as $file){
         ?>
-          <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+          <link type="text/css" rel="stylesheet" href="<?php echo str_replace(base_url("grocery-crud"),base_url("public/grocery-crud"),$file); ?>" />
         <?php
       }
     }

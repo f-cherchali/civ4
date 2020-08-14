@@ -64,7 +64,7 @@
             $header->setPrincipalTitle("Paramètres du compte");
             $header->setBreadCrumb("Dashboard","admin/dashboard");
             $header->setBreadCrumb("Profile",false);
-            $header->setCssFile('assets/css/cropper.min.css');
+            $header->setCssFile('public/assets/css/cropper.min.css');
             $header->render();
             // END HEAD TEMPLATE
 
@@ -78,8 +78,8 @@
             // START FOOTER TEMPLATE
             
             $footer = new AdminFooter();
-            $footer->setJsFile("assets/js/cropper.min.js");
-            $footer->setJsFile("assets/js/jquery-cropper.min.js");
+            $footer->setJsFile("public/assets/js/cropper.min.js");
+            $footer->setJsFile("public/assets/js/jquery-cropper.min.js");
             $footer->setScript(view("admin/script_profile",['sessview'=>$session]));
             $footer->render();
             // END FOOTER TEMPLATE

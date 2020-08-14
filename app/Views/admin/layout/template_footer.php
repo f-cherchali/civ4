@@ -49,7 +49,7 @@
   <?php 
     foreach($gc_js_files as $file){
       ?>
-        <script src="<?php echo $file; ?>"></script>
+        <script src="<?php echo str_replace(base_url("grocery-crud"),base_url("public/grocery-crud"),$file); ?>"></script>
       <?php
     }
   ?>

@@ -3,7 +3,7 @@ namespace App\Controllers\Admin;
 use \App\Controllers\GcController;
 use \App\Models\AdminModel;
 use \App\Controllers\Loaders\AdminHeader;
-use \App\Controllers\Loaders\AdminFooter;   
+use \App\Controllers\Loaders\AdminFooter; 
 
 class Admins extends GcController{
     public function index(){
@@ -18,35 +18,43 @@ class Admins extends GcController{
         $header->setPrincipalTitle("Comptes administrateurs");
         $header->setBreadCrumb("Tableau de bord","admin/dashboard");
         $header->setBreadCrumb("Gestion des administrateurs",false);
-        
-
-
         // START BODY
 
         //Starting Grocery Crud
         $crud = $this->_getGroceryCrudEnterprise();
-        $crud->setTable("admin");
+
+        $crud->setTable('admin');
+        $crud->fields(["photo","email","first_name","last_name","active"]);
+        $crud->columns(["photo","email","first_name","last_name","active"]);
+        $crud->setFieldUpload("photo","public/uploads/images",site_url("public/uploads/images"));
         $crud->unsetJquery();
         $crud->unsetBootstrap();
-        $gcRender = $crud->render();
+        $crud->displayAs("first_name","Prénom");
+        $crud->displayAs("last_name","Nom");
+        $crud->displayAs("active","Etat du compte");
+        $crud->fieldType("active","checkbox_boolean",[0=>"Desactivé",1=>"Activé"]);
+        $output = $crud->render();
+
+        $groceryRender=$this->_example_output($output);
+        
         // END RENDER GROCERY CRUD
 
-        $header->setGcCssFiles((array)$gcRender->css_files);
+        $header->setGcCssFiles((array)$output->css_files);
         $header->render();
-
         
-        echo view("admin/grocery",(array)$gcRender);
+        echo $groceryRender;
         
         // END BODY
 
         // START FOOTER TEMPLATE
 
         $footer = new AdminFooter();
-        $footer->setGcJsFiles((array)$gcRender->js_files);
+        $footer->setGcJsFiles((array)$output->js_files);
         $footer->render();
 
         // END FOOTER TEMPLATE
     }
+    
 }
 
 ?> 

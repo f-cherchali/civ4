@@ -47,22 +47,33 @@ class GcController extends Controller
 		$this->db = \Config\Database::connect();
 		$this->myConfig = new MyConfig();
     }
-    private function _getDbData() {
-        $db = (new \Config\Database())->default;
-            return [
-                'adapter' => [
-                    'driver' => 'mysqli',
-                    'host'     => $db['hostname'],
-                    'database' => $db['database'],
-                    'username' => $db['username'],
-                    'password' => $db['password'],
-                    'charset' => 'utf8'
-                ]
-            ];
+    public function _example_output($output = null) {
+        if (isset($output->isJSONResponse) && $output->isJSONResponse) {
+                    header('Content-Type: application/json; charset=utf-8');
+                    echo $output->output;
+                    exit;
         }
-    protected function _getGroceryCrudEnterprise($bootstrap = true, $jquery = true) {
+
+        return view('admin/grocery.php', (array)$output);
+    }
+
+    public function _getDbData() {
+        $db = (new \Config\Database())->default;
+        return [
+            'adapter' => [
+                'driver' => 'Pdo_Mysql',
+                'host'     => $db['hostname'],
+                'database' => $db['database'],
+                'username' => $db['username'],
+                'password' => $db['password'],
+                'charset' => 'utf8'
+            ]
+        ];
+    }
+    public function _getGroceryCrudEnterprise($bootstrap = true, $jquery = true) {
         $db = $this->_getDbData();
         $config = (new \Config\GroceryCrudEnterprise())->getDefaultConfig();
+
         $groceryCrud = new GroceryCrud($config, $db);
         return $groceryCrud;
     }
