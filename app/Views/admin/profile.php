@@ -67,11 +67,13 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="password">Votre mot de passe actuel</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Mot de passe actuel">
+                        <input type="password" name="password" class="form-control <?=($sessview->getFlashdata('password')!=null)?"is-invalid":""?>" id="password" placeholder="Mot de passe actuel">
+                        <?=($sessview->getFlashdata('password')!=null)?"<div class='invalid-feedback'>".$sessview->getFlashdata('password')."</div>":""?>
                     </div>
                     <div class="form-group">
                         <label for="newpassword">Votre nouveau mot de passe</label>
-                        <input type="newpassword" name="newpassword" class="form-control" id="newpassword" placeholder="Nouveau mot de passe (Min 8 caractères)">
+                        <input type="password" name="newpassword" class="form-control <?=($sessview->getFlashdata('newpassword')!=null)?"is-invalid":""?>" id="newpassword" placeholder="Nouveau mot de passe (Min 8 caractères)">
+                        <?=($sessview->getFlashdata('newpassword')!=null)?"<div class='invalid-feedback'>".$sessview->getFlashdata('newpassword')."</div>":""?>
                     </div>
                 </div>
                 <div class="card-footer">

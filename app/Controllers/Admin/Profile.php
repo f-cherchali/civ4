@@ -32,28 +32,25 @@
                     }
                 }
             }
-            if($this->request->getPost("password") && $this->request->getPost("new_password") ){
+            if($this->request->getPost("password") || $this->request->getPost("newpassword")){
                 $validation = \Config\Services::validation();
                 $validation->setRule("password","Mot de passe actuel","required|min_length[8]");
-                $validation->setRule("new_password","Nouveau mot de passe","required|min_length[8]");
+                $validation->setRule("newpassword","Nouveau mot de passe","required|min_length[8]");
                 if($validation->withRequest($this->request)->run()!==FALSE){
-                    $first_name=$this->request->getPost("password");
-                    $last_name=$this->request->getPost("new_password");
+                    $password=$this->request->getPost("password");
+                    $newPassword=$this->request->getPost("newpassword");
                     if($adminModel->isValidPassword($password,$session->admin_id)){
-
+                        $adminModel->setNewPassword($newPassword,$session->admin_id);
+                        $session->setFlashdata("success_message","Mot de passe modifié avec succès");
+                    }else{
+                        $session->setFlashdata("password","Le mot de passe actuel que vous avez saisi est incorrect");
                     }
-                    $adminModel->updateProfileData($first_name,$last_name,$session->admin_id);
-                    $session->set([
-                        "admin_first_name"=>$first_name,
-                        "admin_last_name"=>$last_name    
-                    ]);
-                    $session->setFlashdata("success_message","Profile modifié avec succès");
                 }else{
-                    if($validation->hasError("first_name")){
-                        $session->setFlashdata("first_name",$validation->getError("first_name"));
+                    if($validation->hasError("password")){
+                        $session->setFlashdata("password",$validation->getError("password"));
                     }
-                    if($validation->hasError("last_name")){
-                        $session->setFlashdata("last_name",$validation->getError("last_name"));
+                    if($validation->hasError("newpassword")){
+                        $session->setFlashdata("newpassword",$validation->getError("newpassword"));
                     }
                 }
             }

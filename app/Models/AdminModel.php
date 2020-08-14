@@ -125,5 +125,23 @@
             ]);
             $builder->where("admin_id",$admin_id)->update();
         }
+        function isValidPassword($password, $admin_id){
+            $db = \Config\Database::connect();
+            $builder = $db->table("admin");
+            $query = $builder->where("admin_id",$admin_id)->get();
+            $result = $query->getResult()[0];
+            $hashpass = $result->password;
+            if(password_verify($password,$hashpass)){
+                return true;
+            }
+            return false;
+        }
+        function setNewPassword($newpassword,$admin_id){
+            $db= \Config\Database:: connect();
+            $builder = $db->table("admin");
+            $builder->where("admin_id",$admin_id)->set([
+                "password"=>password_hash($newpassword,PASSWORD_DEFAULT)
+            ])->update();
+        }
     }
 ?>
