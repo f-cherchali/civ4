@@ -17,10 +17,19 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <?php 
+    if(isset($css_links)){
+      foreach($css_links as $key => $css){
+        ?>
+          <link href="<?=$css?>" rel="stylesheet">
+        <?php
+      }
+    }
+  ?>
+  <?php 
     if(isset($css_files)){
       foreach($css_files as $key => $css){
         ?>
-          <link href="<?=$css?>" rel="stylesheet">
+          <link href="<?=site_url($css)?>" rel="stylesheet">
         <?php
       }
     }
@@ -191,7 +200,7 @@
             </ul>
           </li> -->
           <li class="nav-item">
-            <a href="<?=site_url("dashboard")?>" class="nav-link">
+            <a href="<?=site_url("admin/dashboard")?>" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Tableau de bord
@@ -219,7 +228,19 @@
               <?php 
                 foreach($breadcrumb as $key=>$b){
                   ?>
-                    <li class="breadcrumb-item <?php end($breadcrumb); ($key==key($breadcrumb))? "active":""?>"><a href="<?=($b['link'] != false)?site_url($b['link']):"#"?>"><?=$b['title']?></a></li>
+                    <li class="breadcrumb-item <?php end($breadcrumb); ($key==key($breadcrumb))? "active":""?>">
+                      <?php 
+                        if($b['link'] != false){
+                          ?>
+                            <a href="<?=site_url($b['link'])?>"><?=$b['title']?></a>
+                          <?php
+                        }else{
+                          ?>
+                            <?=$b['title']?>
+                          <?php
+                        }
+                      ?>
+                    </li>
                   <?php 
                 }
               ?>
