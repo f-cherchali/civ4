@@ -167,7 +167,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=site_url(((session('admin_photo')=="")?"assets/img/defaultuser.png":"public/uploads/images/".session('admin_photo')))?>" class="img-circle elevation-2" alt="<?=session('admin_first_name')." ".session('admin_last_name')?>" id="profile-avatar">
+          <img src="<?=site_url(((session('admin_photo')=="")?"public/assets/img/defaultuser.png":"public/uploads/images/".session('admin_photo')))?>" class="img-circle elevation-2" alt="<?=session('admin_first_name')." ".session('admin_last_name')?>" id="profile-avatar">
         </div>
         <div class="info">
           <a href="<?=site_url("admin/profile")?>" class="d-block"><?=session("admin_first_name")." ".session('admin_last_name')?></a>
